@@ -41,8 +41,7 @@ public class Main {
     EV3UltrasonicSensor us = new EV3UltrasonicSensor(s2);
 
 
-    public UltrasonicClosest(){
+    //public UltrasonicClosest(){
 
-    }
 
 }
