@@ -1,4 +1,5 @@
 import com.github.sarxos.webcam.Webcam;
+import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
@@ -15,17 +16,16 @@ public class Test {
 
     int i;
     public static void main(String[] args) {
-        List<Webcam> webcam = Webcam.getWebcams();
-        System.out.println(webcam.toString());
+        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
 
+        Test test = new Test();
+        test.tagBillede(2);
 
-
-
-        System.out.println(webcam.toString());
         Mat source = Imgcodecs.imread("/Users/madsg/Desktop/backend ret opgaver/Galgeleg (1)/Gruppe13_Lejos/testpicture2.jpg", Imgcodecs.IMREAD_COLOR);
         Mat destination = new Mat(source.rows(), source.cols(), source.type());
         source.convertTo(destination, -50,alpha, beta );
         Imgproc.applyColorMap(source,destination,1);
+        Imgcodecs.imwrite("Users/madsg/Desktop/backend ret opgaver/Galgeleg (1)/Gruppe13_Lejos/testpicture2.jpg",destination);
 
     }
 
