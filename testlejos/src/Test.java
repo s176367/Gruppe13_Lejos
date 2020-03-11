@@ -14,23 +14,30 @@ public class Test {
     static double alpha = 1;
     static double beta = 50;
 
-    int i;
+
     public static void main(String[] args) {
+        int i=0;
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
 
         Test test = new Test();
-        test.tagBillede(2);
+            test.tagBillede(i);
+            test.sortHvid(i);
+            i++;
+            test.tagBillede(i);
+            test.sortHvid(i);
+            i++;
+            test.tagBillede(i);
+            test.sortHvid(i);
 
-        Mat source = Imgcodecs.imread("/Users/madsg/Desktop/backend ret opgaver/Galgeleg (1)/Gruppe13_Lejos/testpicture2.jpg", Imgcodecs.IMREAD_COLOR);
+
+        Mat source = Imgcodecs.imread("testpicture2.jpg", Imgcodecs.IMREAD_COLOR);
         Mat destination = new Mat(source.rows(), source.cols(), source.type());
-        source.convertTo(destination, -50,alpha, beta );
         Imgproc.applyColorMap(source,destination,1);
-        Imgcodecs.imwrite("Users/madsg/Desktop/backend ret opgaver/Galgeleg (1)/Gruppe13_Lejos/testpicture2.jpg",destination);
+        Imgcodecs.imwrite("testpicture2.jpg",destination);
 
     }
 
     public void tagBillede(int antalBilleder){
-        antalBilleder = 2;
         try {
             Webcam logitech = Webcam.getWebcamByName("Logitech Webcam C930e 1");
             logitech.open();
@@ -39,5 +46,11 @@ public class Test {
         } catch (IOException e) {
             System.out.println("Fejl " + e);
         }
+    }
+    public void sortHvid(int billede){
+        Mat source = Imgcodecs.imread("testpicture"+billede+".jpg", Imgcodecs.IMREAD_COLOR);
+        Mat destination = new Mat(source.rows(), source.cols(), source.type());
+        Imgproc.applyColorMap(source,destination,1);
+        Imgcodecs.imwrite("testpicture"+billede+".jpg",destination);
     }
 }
